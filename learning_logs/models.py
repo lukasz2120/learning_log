@@ -15,9 +15,12 @@ class Entry(models.Model):
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
-    class meta:
+    class Meta:
         verbose_name_plural = 'entries'
 
-        def __str__(self):
-            """Zwaraca reprezentacje modelu w postaci ciągu tesktowego"""
-            return f"{self.text[:50]}...",
+    def __str__(self):
+        """Zwaraca reprezentacje modelu w postaci ciągu tesktowego"""
+        if len(self.text) > 50:
+            return f"{self.text[:50]}..."
+        else:
+            return f"{self.text}"
