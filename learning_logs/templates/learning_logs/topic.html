@@ -1,0 +1,19 @@
+{% extends "D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\base.html" %}
+
+{% block content %}
+
+  <P>Temat: {{ topic }}</P>  
+
+  <p>Wpisy:</p>
+  <ul>
+  {% for entry in entries %}
+    <li>
+      <p>{{ entry.date_added|date:'d M Y H:i' }}</p>
+      <p>{{ entry.text|linebreaks }}</p>
+    </li>
+  {% empty %}
+    <p>Nie ma jeszcze żadnego wpisu.</p>
+  {% endfor %}
+</ul>  
+
+{% endblock content %}
