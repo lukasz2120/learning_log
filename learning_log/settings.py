@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     #Moje aplikacje
     'learning_logs',
+    'users',
 
     #Domyślne aplikacje
     'django.contrib.admin',
