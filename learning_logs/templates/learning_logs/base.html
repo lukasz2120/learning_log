@@ -9,7 +9,8 @@
     </form>
     
     {% else %}
-      <a href="{% url 'users:login' %}">log in</a>
+      <a href="{% url 'users:register' %}">Sign up</a>
+      <a href="{% url 'users:login' %}">Log in</a>
     {% endif %}  
 </p>
 
