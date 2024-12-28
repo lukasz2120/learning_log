@@ -10,7 +10,7 @@ def register(request):
     else:
         #Przetwarzanie wypełnionego formularza
         form = UserCreationForm(data=request.POST)
-        if form.is_valid:
+        if form.is_valid():
             new_user = form.save()
             #Zalogowanie użytkownika, a następnie przekierowanie na 
             #główna strone
