@@ -1,14 +1,17 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,Http404
+from rest_framework.decorators import api_view
 
 from .models import Topic,Entry
 from .forms import TopicForm,EntryForm
+
 
 def index(request):
     """Strona głowna dla aplikacji Learning log."""
     return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\index.html')
 
+@api_view(['GET'])
 @login_required
 def topics(request):
     """Wyświetlanie wszystkich tematów"""
@@ -16,6 +19,7 @@ def topics(request):
     context = {'topics': topics}
     return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\topics.html', context)
 
+@api_view(['GET'])
 @login_required
 def topic(request,topic_id):
     """Wyświetla pojedyńczy temat i wszystkie powiązane z nim wpisy"""
@@ -28,6 +32,7 @@ def topic(request,topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\topic.html',context)
 
+@api_view(['POST'])
 @login_required
 def new_topic(request):
     """Dodaj nowy temat"""
@@ -47,6 +52,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_topic.html', context)
 
+@api_view(['POST'])
 @login_required
 def new_entry(request, topic_id):
     """Dodanie nowego wpisu dla konkretnego tematu"""
@@ -68,6 +74,7 @@ def new_entry(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_entry.html',context)
 
+@api_view(['POST'])
 @login_required
 def edit_entry(request,entry_id):
     """Edycja insteniejącego wpisu"""

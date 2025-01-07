@@ -38,6 +38,8 @@ INSTALLED_APPS = [
 
     #Aplikacje trzecich firm
     'bootstrap4',
+    'drf_yasg',
+    'rest_framework',
 
     #Domyślne aplikacje
     'django.contrib.admin',
@@ -131,3 +133,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'users:login'
+LOGOUT_REDIRECT_URL = ''

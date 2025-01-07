@@ -5,8 +5,10 @@ from . import views
 
 app_name = 'users'
 urlpatterns = [
-#Dołączanie domyślnych adresówu URL uwierzytelniania
+#Dołączanie domyślnych adresów URL uwierzytelniania
+path('logout/',views.user_logout,name='user_logout'),
 path('', include('django.contrib.auth.urls')),
 #Strona rejestracji
 path('register/',views.register,name='register'),
+
 ]
