@@ -32,7 +32,7 @@ def topic(request,topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\topic.html',context)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @login_required
 def new_topic(request):
     """Dodaj nowy temat"""
@@ -52,7 +52,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_topic.html', context)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @login_required
 def new_entry(request, topic_id):
     """Dodanie nowego wpisu dla konkretnego tematu"""
@@ -74,7 +74,7 @@ def new_entry(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_entry.html',context)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @login_required
 def edit_entry(request,entry_id):
     """Edycja insteniejącego wpisu"""
@@ -91,7 +91,7 @@ def edit_entry(request,entry_id):
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('learning_logs:topic', topic.id==topic.id)
+            return redirect('learning_logs:topic', topic.id)
     
     context = {'entry': entry, 'topic': topic,'form': form}
     return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_entry.html', context)

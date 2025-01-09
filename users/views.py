@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def register(request):
     """Rejestracja nowego użytkownika"""
     if request.method != "POST":
@@ -25,7 +25,7 @@ def register(request):
     context = {'form': form}
     return render(request, 'registration/register.html',context)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @login_required
 def user_logout(request):
     logout(request)
