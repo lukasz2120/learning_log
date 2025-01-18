@@ -9,7 +9,7 @@ from .forms import TopicForm,EntryForm
 
 def index(request):
     """Strona głowna dla aplikacji Learning log."""
-    return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\index.html')
+    return render(request, 'learning_logs/index.html')
 
 @api_view(['GET'])
 @login_required
@@ -17,7 +17,7 @@ def topics(request):
     """Wyświetlanie wszystkich tematów"""
     topics = Topic.objects.filter(owner=request.user).order_by("date_added")
     context = {'topics': topics}
-    return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\topics.html', context)
+    return render(request, 'learning_logs/topics.html', context)
 
 @api_view(['GET'])
 @login_required
@@ -30,7 +30,7 @@ def topic(request,topic_id):
     
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
-    return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\topic.html',context)
+    return render(request,'learning_logs/topic.html',context)
 
 @api_view(['POST', 'GET'])
 @login_required
@@ -50,7 +50,7 @@ def new_topic(request):
     
     #Wyświetlanie pustego formularza
     context = {'form': form}
-    return render(request,'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_topic.html', context)
+    return render(request,'learning_logs/new_topic.html', context)
 
 @api_view(['POST', 'GET'])
 @login_required
@@ -72,7 +72,7 @@ def new_entry(request, topic_id):
         
     #Wyświetlanie pustego formularza
     context = {'topic': topic, 'form': form}
-    return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_entry.html',context)
+    return render(request, 'learning_logs/new_entry.html',context)
 
 @api_view(['POST', 'GET'])
 @login_required
@@ -94,4 +94,4 @@ def edit_entry(request,entry_id):
             return redirect('learning_logs:topic', topic.id)
     
     context = {'entry': entry, 'topic': topic,'form': form}
-    return render(request, 'D:\\projects\\learning_log\\learning_logs\\templates\\learning_logs\\new_entry.html', context)
+    return render(request, 'learning_logs/new_entry.html', context)
